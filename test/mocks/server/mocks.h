@@ -117,6 +117,7 @@ public:
 
   MOCK_METHOD1(addListener, void(const Json::Object& json));
   MOCK_METHOD0(listeners, std::list<std::reference_wrapper<Listener>>());
+  MOCK_METHOD1(removeListener, void(const std::string& listener_name));
 };
 
 class MockInstance : public Instance {

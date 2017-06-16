@@ -19,8 +19,6 @@ Worker::Worker(ThreadLocal::Instance& tls, std::chrono::milliseconds file_flush_
   tls_.registerThread(handler_->dispatcher(), false);
 }
 
-Worker::~Worker() {}
-
 void Worker::initializeConfiguration(ListenerManager& listener_manager, GuardDog& guard_dog) {
   for (Listener& listener : listener_manager.listeners()) {
     const Network::ListenerOptions listener_options = {

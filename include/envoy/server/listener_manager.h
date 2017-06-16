@@ -83,9 +83,38 @@ public:
    * @return Stats::Scope& the stats scope to use for all listener specific stats.
    */
   virtual Stats::Scope& listenerScope() PURE;
+
+  /**
+   * fixfix
+   */
+  virtual const std::string& name() PURE;
+
+  /**
+   * fixfix
+   */
+  virtual uint64_t uniqueId() PURE;
 };
 
 typedef std::unique_ptr<Listener> ListenerPtr;
+
+/**
+ * fixfix
+ */
+class ListenerManagerCallbacks {
+public:
+  enum class StateChangeType {
+    Added, // fixfix
+    Removed // fixfix
+    // fixfix drain
+  };
+
+  virtual ~ListenerManagerCallbacks() {}
+
+  /**
+   *
+   */
+  virtual void onListenerStateChange(Listener& listener, StateChangeType type) PURE;
+};
 
 /**
  * A manager for all listeners.
@@ -105,6 +134,11 @@ public:
    * @return std::list<std::reference_wrapper<Listener>> a list of the currently loaded listeners.
    */
   virtual std::list<std::reference_wrapper<Listener>> listeners() PURE;
+
+  /**
+   * fixfix
+   */
+  virtual void removeListener(const std::string& listener_name) PURE;
 };
 
 } // Server
