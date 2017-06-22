@@ -38,7 +38,7 @@ then
   echo "${BUILD_DIR} mount missing - did you forget -v <something>:${BUILD_DIR}?"
   exit 1
 fi
-export ENVOY_FILTER_EXAMPLE_SRCDIR="${BUILD_DIR}/envoy-filter-example"
+export ENVOY_FILTER_EXAMPLE_SRCDIR="${BUILD_DIR}/s4n-envoy-filter-example"
 
 # Make sure that /source doesn't contain /build on the underlying host
 # filesystem, including via hard links or symlinks. We can get into weird
@@ -72,14 +72,14 @@ ln -sf /thirdparty "${ENVOY_SRCDIR}"/ci/prebuilt
 ln -sf /thirdparty_build "${ENVOY_SRCDIR}"/ci/prebuilt
 
 # Setup Envoy consuming project.
-if [[ ! -a "${ENVOY_FILTER_EXAMPLE_SRCDIR}" ]]
-then
-  git clone https://github.com/lyft/envoy-filter-example.git "${ENVOY_FILTER_EXAMPLE_SRCDIR}"
-fi
+# if [[ ! -a "${ENVOY_FILTER_EXAMPLE_SRCDIR}" ]]
+# then
+#   git clone https://github.com/quiasmo/envoy-filter-example.git "${ENVOY_FILTER_EXAMPLE_SRCDIR}"
+# fi
 
-# This is the hash on https://github.com/lyft/envoy-filter-example.git we pin to.
-(cd "${ENVOY_FILTER_EXAMPLE_SRCDIR}" && git fetch origin && git checkout 2cad2976f6af77508473512c6823762a8a0ef253)
-cp -f "${ENVOY_SRCDIR}"/ci/WORKSPACE.filter.example "${ENVOY_FILTER_EXAMPLE_SRCDIR}"/WORKSPACE
+# This is the hash on https://github.com/quiasmo/envoy-filter-example.git we pin to.
+# (cd "${ENVOY_FILTER_EXAMPLE_SRCDIR}" && git fetch origin && git checkout master . && git pull )
+# cp -f "${ENVOY_SRCDIR}"/ci/WORKSPACE.filter.example "${ENVOY_FILTER_EXAMPLE_SRCDIR}"/WORKSPACE
 
 # Also setup some space for building Envoy standalone.
 export ENVOY_BUILD_DIR="${BUILD_DIR}"/envoy

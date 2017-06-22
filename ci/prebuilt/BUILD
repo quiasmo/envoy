@@ -121,3 +121,10 @@ cc_library(
     hdrs = glob(["thirdparty_build/include/gperftools/**/*.h"]),
     strip_include_prefix = "thirdparty_build/include",
 )
+
+cc_library(
+    name = "tinyxml2",
+    srcs = ["thirdparty_build/lib/libtinyxml2.a"],
+    hdrs = ["thirdparty_build/include/tinyxml2.h"],
+    includes = ["thirdparty_build/include"],
+)

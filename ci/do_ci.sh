@@ -59,7 +59,7 @@ elif [[ "$1" == "bazel.asan" ]]; then
   cd "${ENVOY_FILTER_EXAMPLE_SRCDIR}"
   echo "Building and testing..."
   bazel --batch test ${BAZEL_TEST_OPTIONS} -c dbg --config=clang-asan @envoy//test/... \
-    //:echo2_integration_test
+    //:s4n_integration_test
   exit 0
 elif [[ "$1" == "bazel.tsan" ]]; then
   setup_clang_toolchain
@@ -67,7 +67,15 @@ elif [[ "$1" == "bazel.tsan" ]]; then
   cd "${ENVOY_FILTER_EXAMPLE_SRCDIR}"
   echo "Building and testing..."
   bazel --batch test ${BAZEL_TEST_OPTIONS} -c dbg --config=clang-tsan @envoy//test/... \
-    //:echo2_integration_test
+    //:s4n_integration_test
+  exit 0
+elif [[ "$1" == "bazel.s4n" ]]; then
+  setup_clang_toolchain
+  echo "bazel s4n debug build with tests..."
+  cd "${ENVOY_FILTER_EXAMPLE_SRCDIR}"
+  echo "Building and testing..."
+  bazel --batch test ${BAZEL_TEST_OPTIONS} -c dbg //:s4n_integration_test
+    
   exit 0
 elif [[ "$1" == "bazel.dev" ]]; then
   setup_clang_toolchain

@@ -20,4 +20,5 @@ TARGET_RECIPES = {
     "spdlog": "spdlog",
     "ssl": "boringssl",
     "tclap": "tclap",
+    "tinyxml2":"tinyxml2",
 }
